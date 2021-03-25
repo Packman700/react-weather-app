@@ -12,17 +12,16 @@ class App extends React.Component{
     state = {
         apiAddress: '/api/location/search/?',
         apiData : {},
-        searchCity : '',
-        selectedLocalization: ''
+        searchCity : 's',
     }
 
     async getDataFromApi (event){ // 'query', 'lattlong'
-        const {apiAddress, selectedLocalization} = this.state
+        const {apiAddress, searchCity} = this.state
         const isLattlongQuery = falseAndTrueStringToBool(event.target.dataset.isLattlongQuery)
 
         let response
         if (!isLattlongQuery)
-            response = await fetch(`${apiAddress}query=${selectedLocalization}`)
+            response = await fetch(`${apiAddress}query=${searchCity}`)
         if (isLattlongQuery)
             console.log('.....')
             // Fill this later
@@ -31,6 +30,7 @@ class App extends React.Component{
             if (response.status === 200 && response.ok === true){
                 const apiData = await response.json()
                 this.setState(apiData)
+                console.log('Succes get data')
             } else
                 return Error(`Failed connect to API: ${response.status} ${response.statusText}`)
         } catch (error) {
@@ -47,7 +47,7 @@ class App extends React.Component{
     render(){
         const SelectLocalizationPack = {
             inputValue : this.state.searchCity,
-            onChange: this.handleChange,
+            handleChange: this.handleChange,
             getDataFromApi: this.getDataFromApi
         }
         return (

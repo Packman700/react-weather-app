@@ -1,7 +1,7 @@
 import React from 'react'
 
 function SelectForPlaces(props){
-    const {inputValue, handleChange, getDataFromApi} = props.data
+    const {inputValue, getDataFromApi, handleChange} = props.data
     return(
         <div>
             <input
