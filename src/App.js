@@ -4,6 +4,7 @@ import SelectPlace from "./components/SelectPlace";
 import TodayWeather from "./components/TodayWeather";
 import WeatherForecastCards from "./components/WeatherForecastCards";
 import SwitchTemperatureScale from "./components/SwitchTemperatureScale";
+import TodayHighlights from "./components/TodayHighlights";
 
 class App extends React.Component{
     constructor() {
@@ -82,7 +83,6 @@ class App extends React.Component{
         return [apiResponse, 'apiWeatherData']
     }
 
-
     // async latLongQuery(lat, long){
     //     const {apiAddress} = this.state
     //
@@ -130,27 +130,20 @@ class App extends React.Component{
         return (
             <div className="App">
                 <aside>
-                    <SelectPlace data={selectLocalizationPack}/>
-                    {
-                        this.state?.apiWeatherData?.consolidated_weather?.[0] !== undefined
-                        ? <TodayWeather
-                                data={this.state.apiWeatherData}
-                                convertTemperature = {this.convertTemperature} />
-                        : <p> Can't load data </p>
-                    }
+                    <SelectPlace data={selectLocalizationPack} />
+                        <TodayWeather
+                            data = {this.state.apiWeatherData}
+                            convertTemperature = {this.convertTemperature} />
                 </aside>
                 <main>
-                    <SwitchTemperatureScale data={{
-                        handleChange: this.handleChange,
-                        selectedTemperatureScale: this.state.temperatureScale
-                    }}/>
-                    {
-                        this.state?.apiWeatherData?.consolidated_weather?.[5] !== undefined
-                        ? <WeatherForecastCards
-                                data = {this.state.apiWeatherData}
-                                convertTemperature = {this.convertTemperature} />
-                        : <p> Can't load data </p>
-                    }
+                    <SwitchTemperatureScale
+                        data = {{handleChange: this.handleChange,
+                        selectedTemperatureScale: this.state.temperatureScale}} />
+                    <WeatherForecastCards
+                        data = {this.state.apiWeatherData}
+                        convertTemperature = {this.convertTemperature} />
+
+                    <TodayHighlights data = {this.state.apiWeatherData} />
                 </main>
             </div>
         )

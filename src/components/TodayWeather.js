@@ -2,6 +2,8 @@ import React from "react";
 import dateFormat from "dateformat";
 
 function TodayWeather(props){
+    if (props?.data?.consolidated_weather === undefined) return null
+
     const { weather_state_abbr:weatherImage,
             weather_state_name:weatherName,} = props.data.consolidated_weather[0]
     let   { the_temp:temperature,

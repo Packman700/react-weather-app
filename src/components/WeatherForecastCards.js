@@ -2,7 +2,8 @@ import React from "react";
 import dateFormat from "dateformat";
 
 function WeatherForecastCards(props){
-    console.log(props.data.consolidated_weather.slice(1,6))
+    if (props?.data?.consolidated_weather === undefined) return null
+
     const weatherCards = props.data.consolidated_weather.slice(1,6).map((cardInfo,index)=>{
         let { weather_state_abbr:weatherImage,
                 weather_state_name:weatherName,
