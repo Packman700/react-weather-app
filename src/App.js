@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 import SelectPlace from "./components/SelectPlace";
+import TodayWeather from "./components/TodayWeather";
+import WeatherForecastCards from "./components/WeatherForecastCards";
+import SwitchTemperatureScale from "./components/SwitchTemperatureScale";
 
 class App extends React.Component{
     constructor() {
@@ -8,6 +11,7 @@ class App extends React.Component{
         this.getDataFromApi = this.getDataFromApi.bind(this)
         this.cityNameQuery = this.cityNameQuery.bind(this)
         this.weatherQuery = this.weatherQuery.bind(this)
+        // this.latLongQuery = this.latLongQuery.bind(this)
     }
 
     state = {
@@ -18,7 +22,22 @@ class App extends React.Component{
         apiCitiesData : [],
         isRunningApiCitiesRequest: false,
         searchCity : '',
+
+        temperatureScale: 'c'
     }
+
+    // async componentDidMount() {
+    //     if ("geolocation" in navigator) {
+    //         navigator.geolocation.getCurrentPosition(function(position) {
+    //             const {latitude:lat, longitude:long} = position.coords
+    //             console.log(lat, long)
+    //         })
+    //         await this.getDataFromApi(this.latLongQuery)
+    //     } else {
+    //         console.log("Not Available");
+    //     }
+    // }
+
 
     ///////// GET DATA FROM API /////////
     async getDataFromApi (queryFunction, event){ // 'query', 'lattlong'
@@ -62,6 +81,21 @@ class App extends React.Component{
 
         return [apiResponse, 'apiWeatherData']
     }
+
+
+    // async latLongQuery(lat, long){
+    //     const {apiAddress} = this.state
+    //
+    //     this.setState({isRunningApiCitiesRequest:true})
+    //     const apiLatLongResponse = await fetch(`${apiAddress}search/?lattlong=51.919438,19.145136`)
+    //     this.setState({isRunningApiCitiesRequest:false})
+    //     const woeid = await apiLatLongResponse.json()[0].woeid
+    //
+    //     await this.getDataFromApi()
+    //     console.log(jsonResponse)
+    //     return [apiResponse, 'apiCitiesData']
+    // }
+
     /////////////////////////////////////
 
     handleChange = (event) => {
@@ -69,9 +103,21 @@ class App extends React.Component{
         this.setState({[name]: value})
     }
 
+    //////////// TEMPERATURE ////////////
+
+    convertTemperature = (centigradeTemperature) => {
+        // Output => [TemperatureInSelectedScale, SelectedScaleMark]
+        if (this?.state?.temperatureScale === undefined) return Error("No data in temperatureScale stata")
+        if (centigradeTemperature === undefined) return Error("convertTemperature don't get any parameter")
+
+        centigradeTemperature = parseFloat(centigradeTemperature)
+        if (this.state.temperatureScale === "c") return [Math.round(centigradeTemperature), '°C']
+        if (this.state.temperatureScale === "f") return [Math.round(centigradeTemperature * 9/5) + 32, '°F']
+    }
+
     render(){
         // Todo load weather data animation
-        const SelectLocalizationPack = {
+        const selectLocalizationPack = {
             inputValue : this.state.searchCity,
             apiCitiesData: this.state.apiCitiesData,
             isRunningApiCitiesRequest: this.state.isRunningApiCitiesRequest,
@@ -83,8 +129,29 @@ class App extends React.Component{
 
         return (
             <div className="App">
-                <SelectPlace data={SelectLocalizationPack}/>
-
+                <aside>
+                    <SelectPlace data={selectLocalizationPack}/>
+                    {
+                        this.state?.apiWeatherData?.consolidated_weather?.[0] !== undefined
+                        ? <TodayWeather
+                                data={this.state.apiWeatherData}
+                                convertTemperature = {this.convertTemperature} />
+                        : <p> Can't load data </p>
+                    }
+                </aside>
+                <main>
+                    <SwitchTemperatureScale data={{
+                        handleChange: this.handleChange,
+                        selectedTemperatureScale: this.state.temperatureScale
+                    }}/>
+                    {
+                        this.state?.apiWeatherData?.consolidated_weather?.[5] !== undefined
+                        ? <WeatherForecastCards
+                                data = {this.state.apiWeatherData}
+                                convertTemperature = {this.convertTemperature} />
+                        : <p> Can't load data </p>
+                    }
+                </main>
             </div>
         )
     }

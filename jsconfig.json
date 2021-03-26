@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "../react-weather-app-js/src",
-    "paths":  {
-       "@helpers/*": ["helpers/*"]
-    }
+    "baseUrl": "./src"
   }
 }
