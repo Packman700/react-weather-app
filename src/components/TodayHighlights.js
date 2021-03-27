@@ -1,4 +1,5 @@
 import React from "react";
+import compassArrow from "./navigation.png"
 
 function TodayHighlights(props){
     if (props?.data?.consolidated_weather === undefined) return null
@@ -22,7 +23,7 @@ function TodayHighlights(props){
                 <header>Wind status</header>
                 <p>{windSpeed}mph</p>
                 {/*Todo connect to materal icons (and replace this png image)*/}
-                <img src="navigation.png" alt="compass direction" style={{transform: `rotate(${compassRotate}deg)`}}/>
+                <img src={compassArrow} alt="compass direction" style={{transform: `rotate(${compassRotate}deg)`}}/>
                 <p>{windDirection}</p>
             </article>
 
