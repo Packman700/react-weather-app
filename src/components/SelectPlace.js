@@ -1,5 +1,8 @@
 import React from 'react'
 import Button from "styled-components/buttons/Button";
+import FormatInputText from "styled-components/input/InputText";
+import FlexRowCenter from "styled-components/position/FlexAlign";
+import FlexColumnCenter from "styled-components/position/FlexColumnCenter";
 
 class SelectPlace extends React.Component{
     state = {
@@ -51,23 +54,26 @@ class SelectPlace extends React.Component{
         }
 
         return (
-            <div>
+            <FlexColumnCenter width="366px">
                 {/* SEARCH ENGINE */}
-                <div>
+                <FlexRowCenter width="366px">
                     {/* todo add validation (look input isn't empty) before send */}
-                    <input
-                        type="text"
-                        name='searchCity'
-                        placeholder="search location"
-                        value={inputValue}
-                        onChange={handleChange}
-                    />
+                    <FormatInputText searchIcon>
+                        <input
+                            type="text"
+                            name='searchCity'
+                            placeholder="search location"
+                            autoComplete="off"
+                            value={inputValue}
+                            onChange={handleChange}
+                        />
+                    </FormatInputText>
                     <Button
-                        onClick={(event) => searchButtonAction(event) }
+                        onClick={(event) => searchButtonAction(event)}
                     >
                         Search
                     </Button>
-                </div>
+                </FlexRowCenter>
 
                 {/* NUMBER OF NOT SHOWN CITIES */}
                 {
@@ -83,7 +89,7 @@ class SelectPlace extends React.Component{
                         : <p>Loading data</p>
                     }
                 </ul>
-            </div>
+            </FlexColumnCenter>
         )
     }
 }

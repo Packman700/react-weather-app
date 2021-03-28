@@ -133,7 +133,9 @@ class App extends React.Component{
 
         return (
             <Layout>
-                <StyledAside>
+                {/*<span className="material-icons">face</span>*/}
+
+                <StyledAside as="aside">
                     <SelectPlace data={selectLocalizationPack} />
                     <TodayWeather
                         data = {this.state.apiWeatherData}
