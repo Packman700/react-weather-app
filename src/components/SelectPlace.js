@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from "styled-components/buttons/Button";
 
 class SelectPlace extends React.Component{
     state = {
@@ -61,11 +62,11 @@ class SelectPlace extends React.Component{
                         value={inputValue}
                         onChange={handleChange}
                     />
-                    <button
+                    <Button
                         onClick={(event) => searchButtonAction(event) }
                     >
                         Search
-                    </button>
+                    </Button>
                 </div>
 
                 {/* NUMBER OF NOT SHOWN CITIES */}

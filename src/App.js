@@ -1,10 +1,14 @@
 import React from 'react';
-import './App.css';
-import SelectPlace from "./components/SelectPlace";
-import TodayWeather from "./components/TodayWeather";
-import WeatherForecastCards from "./components/WeatherForecastCards";
-import SwitchTemperatureScale from "./components/SwitchTemperatureScale";
-import TodayHighlights from "./components/TodayHighlights";
+// COMPONENTS
+import SelectPlace from "components/SelectPlace";
+import TodayWeather from "components/TodayWeather";
+import WeatherForecastCards from "components/WeatherForecastCards";
+import SwitchTemperatureScale from "components/SwitchTemperatureScale";
+import TodayHighlights from "components/TodayHighlights";
+// STYLED COMPONENTS
+import Layout from "layout/Layout";
+import StyledAside from "styled-components/StyledAside";
+import StyledMain from "styled-components/StyledMain";
 
 class App extends React.Component{
     constructor() {
@@ -128,14 +132,14 @@ class App extends React.Component{
         }
 
         return (
-            <div className="App">
-                <aside>
+            <Layout>
+                <StyledAside>
                     <SelectPlace data={selectLocalizationPack} />
-                        <TodayWeather
-                            data = {this.state.apiWeatherData}
-                            convertTemperature = {this.convertTemperature} />
-                </aside>
-                <main>
+                    <TodayWeather
+                        data = {this.state.apiWeatherData}
+                        convertTemperature = {this.convertTemperature} />
+                </StyledAside>
+                <StyledMain>
                     <SwitchTemperatureScale
                         data = {{handleChange: this.handleChange,
                         selectedTemperatureScale: this.state.temperatureScale}} />
@@ -144,8 +148,8 @@ class App extends React.Component{
                         convertTemperature = {this.convertTemperature} />
 
                     <TodayHighlights data = {this.state.apiWeatherData} />
-                </main>
-            </div>
+                </StyledMain>
+            </Layout>
         )
     }
 }
