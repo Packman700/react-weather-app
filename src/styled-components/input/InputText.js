@@ -4,19 +4,21 @@ import styled, {css} from "styled-components";
 const InputTextDiv = styled.div`
   position: relative;
   display: inline-block;
-  padding: calc(0.8em - 2px) 1.2em; // subtract border
+  padding: 0.7rem 1.2rem; 
   
+  height: 44px;
   width: 268px;
 
   border: ${({theme}) => theme.colors.white} 1px solid;
   
+  font-size: 1rem;
   // Edit inner input
   & input {
       background: transparent;
       border: transparent 0 solid;
       width: ${({searchIcon}) => searchIcon? "208px": "228px"} ;
       color: ${({theme}) => theme.colors.grayMuted};
-      font-size: 16px;
+      font-size: 1em;
       font-weight: ${({theme}) => theme.fonts.weight.thin};
       margin-left: ${({searchIcon}) => searchIcon? "20px": 0}; // make space for icon
       &:focus {
