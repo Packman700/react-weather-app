@@ -18,7 +18,7 @@ class SelectPlace extends React.Component{
 
     /// GENERATE LIST OF CITIES ///
     generatePlacesList = () => {
-        let {apiCitiesData, weatherQuery, getDataFromApi} = this.props.data
+        let {apiCitiesData, weatherQuery, getDataFromApi, handleChange} = this.props.data
 
         if (typeof apiCitiesData !== 'object' || apiCitiesData[0] === undefined)
             return [] // This empty is important!
@@ -31,6 +31,10 @@ class SelectPlace extends React.Component{
         const selectCityAction = (event) => {
             getDataFromApi(weatherQuery, event)
             this.setState({startSearch: false})
+
+            // Modify event.target to hide SelectPlace after chose city
+            event.target = {name:"isSelectPlaceActive", value:false}
+            handleChange(event)
         }
 
         // List of item to return
@@ -65,7 +69,7 @@ class SelectPlace extends React.Component{
 
                 <FlexColumnCenter width="366px" >
                     {/* CLOSE BUTTON */}
-                    <FlexRowCenter mb="26px" justifyContent="flex-end">
+                    <FlexRowCenter mb="13px" mt="13px" justifyContent="flex-end">
                         <CloseButton name="isSelectPlaceActive" value="false" onClick={handleChange}/>
                     </FlexRowCenter>
 
