@@ -4,9 +4,9 @@ import styled, {css} from "styled-components";
 const InputTextDiv = styled.div`
   position: relative;
   display: inline-block;
-  padding: 0.7rem 1.2rem; 
+  padding: 12px 20px; 
   
-  height: 44px;
+  height: 48px;
   width: 268px;
 
   border: ${({theme}) => theme.colors.white} 1px solid;
@@ -21,7 +21,7 @@ const InputTextDiv = styled.div`
       font-size: 1em;
       font-weight: ${({theme}) => theme.fonts.weight.thin};
       margin-left: ${({searchIcon}) => searchIcon? "20px": 0}; // make space for icon
-      &:focus {
+      :focus {
         outline: none;
       }
   }
@@ -30,12 +30,12 @@ const InputTextDiv = styled.div`
   ${({searchIcon}) => searchIcon && css`
     ::before {
       position: absolute;
-      font-family: 'Material Icons';
+      font-family: 'Material Icons', 'Raleway', sans-serif;
       content: "search";
       font-size: 23px;
       color: ${({theme}) => theme.colors.grayMuted};
       left: 10px;
-      top: 10px;
+      top: 11px;
     }
   `}
 `

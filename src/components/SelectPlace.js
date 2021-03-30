@@ -3,18 +3,22 @@ import Button from "styled-components/buttons/Button";
 import FormatInputText from "styled-components/input/InputText";
 import FlexRowCenter from "styled-components/position/FlexAlign";
 import FlexColumnCenter from "styled-components/position/FlexColumnCenter";
+import Small from "styled-components/small/Small";
+import FreeSpace from "styled-components/position/FreeSpace";
+import Ul from "styled-components/ul/Ul";
+import CityListItem from "styled-components/li/CityListItem";
 
 class SelectPlace extends React.Component{
     state = {
         startSearch: false,
-        numberCitiesToShow: 10
+        numberCitiesToShow: 6
     }
 
     generatePlacesList = () => {
         let {apiCitiesData, weatherQuery, getDataFromApi} = this.props.data
 
         if (typeof apiCitiesData !== 'object' || apiCitiesData[0] === undefined)
-            return <p> Nothing found </p>
+            return []
             // Todo format this text
 
         // Limit cities to show
@@ -26,13 +30,13 @@ class SelectPlace extends React.Component{
         }
 
         const citesListElements = apiCitiesData.map(city=>
-            <li
+            <CityListItem
                 key={city.woeid}
                 data-key={city.woeid}
                 onClick={(event) => selectCityAction(event)}
             >
                 {city.title}
-            </li>
+            </CityListItem>
         )
 
         return (citesListElements)
@@ -54,9 +58,9 @@ class SelectPlace extends React.Component{
         }
 
         return (
-            <FlexColumnCenter width="366px">
+            <FlexColumnCenter width="366px" >
                 {/* SEARCH ENGINE */}
-                <FlexRowCenter width="366px">
+                <FlexRowCenter width="366px" mb="25px">
                     {/* todo add validation (look input isn't empty) before send */}
                     <FormatInputText searchIcon>
                         <input
@@ -75,20 +79,25 @@ class SelectPlace extends React.Component{
                     </Button>
                 </FlexRowCenter>
 
-                {/* NUMBER OF NOT SHOWN CITIES */}
-                {
-                    notShownCitiesElements > 0
-                    && <p>We hide {notShownCitiesElements} cities</p>
-                }
 
                 {/* LIST OF CITIES */}
-                <ul>
+                <Ul>
                     {
                         !isRunningApiCitiesRequest
-                        ? citesListElements
-                        : <p>Loading data</p>
+                        && citesListElements
                     }
-                </ul>
+                </Ul>
+
+                {/* Reaction to all possible data state */}
+                {
+                    isRunningApiCitiesRequest
+                    ? <Small mb="2px">Loading data</Small>
+                    : notShownCitiesElements > 0
+                        ? <Small mb="12px">We hide {notShownCitiesElements} cities</Small>
+                        : citesListElements.length === 0 && this.state.startSearch
+                            ? <Small mb="2px"> Nothing found </Small>
+                            : <FreeSpace mb="12px"/>
+                }
             </FlexColumnCenter>
         )
     }

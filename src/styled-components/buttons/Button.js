@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const Button = styled.button`
   // Default button
+  height: 48px;
+
   cursor: pointer;
   font-size: 16px;
   font-weight: ${({theme}) => theme.fonts.weight.thin};
