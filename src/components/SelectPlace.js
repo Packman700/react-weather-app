@@ -1,17 +1,18 @@
 import React from 'react'
 import Button from "styled-components/buttons/Button";
 import FormatInputText from "styled-components/input/InputText";
-import FlexRowCenter from "styled-components/position/FlexAlign";
+import FlexRowCenter from "styled-components/position/FlexRowCenter";
 import FlexColumnCenter from "styled-components/position/FlexColumnCenter";
 import Small from "styled-components/small/Small";
 import FreeSpace from "styled-components/position/FreeSpace";
 import Ul from "styled-components/ul/Ul";
 import CityListItem from "styled-components/li/CityListItem";
+import CloseButton from "../styled-components/buttons/CloseButton";
 
 class SelectPlace extends React.Component{
     state = {
         startSearch: false,
-        numberCitiesToShow: 6
+        numberCitiesToShow: 5
     }
 
     generatePlacesList = () => {
@@ -59,8 +60,12 @@ class SelectPlace extends React.Component{
 
         return (
             <FlexColumnCenter width="366px" >
+                <FlexRowCenter mb="26px" justifyContent="flex-end">
+                    <CloseButton />
+                </FlexRowCenter>
+
                 {/* SEARCH ENGINE */}
-                <FlexRowCenter width="366px" mb="25px">
+                <FlexRowCenter mb="25px">
                     {/* todo add validation (look input isn't empty) before send */}
                     <FormatInputText searchIcon>
                         <input

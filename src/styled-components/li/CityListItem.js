@@ -12,7 +12,8 @@ const CityListItem = styled.li`
   
   font-weight: 100;
   font-size: 19px;
-  
+  cursor: pointer;
+
   :hover {  
     border: 1px solid ${({theme}) => theme.colors.grayDark};
     padding-left: 11px;

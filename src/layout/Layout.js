@@ -40,10 +40,15 @@ const GlobalStyle = createGlobalStyle`
 
 const StyleWrapper = styled.div`
   display: flex;
-  
   min-height: 100vh;
   min-width: 100vw;
   background-color: ${({theme}) => theme.colors.primaryDark};
+
+  @media ${({theme}) => theme.breakPoints.smallScreen} {
+    & {
+      flex-direction: column;
+    }
+  }
 `
 
 const Layout = ({children}) => (

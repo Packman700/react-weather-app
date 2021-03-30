@@ -4,8 +4,9 @@ const FlexRowCenter = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: ${({width}) => width ? width : 'auto'};
+  justify-content: ${({justifyContent}) => justifyContent ? justifyContent : "space-between"};
+  
+  width: ${({width}) => width ? width : '100%'};
   margin-bottom: ${({mb}) => mb ? mb : 0};
 `
 

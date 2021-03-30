@@ -8,7 +8,7 @@ const InputTextDiv = styled.div`
   
   height: 48px;
   width: 268px;
-
+  
   border: ${({theme}) => theme.colors.white} 1px solid;
   
   font-size: 1rem;

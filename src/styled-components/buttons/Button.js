@@ -1,19 +1,11 @@
 import styled from "styled-components";
+import styledButtonTemplate from "./StyledButtonTemplate";
 
-const Button = styled.button`
+const Button = styled(styledButtonTemplate)`
   // Default button
   height: 48px;
-
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: ${({theme}) => theme.fonts.weight.thin};
   padding: 0.8em 1.2em;
-  border: transparent 0 solid;
-  color: ${({theme}) => theme.colors.white};
   background: ${({theme}) => theme.colors.asideBtnBackgroundAlt};
 `
-// ${props => props.blue && css`
-//   background: white;
-//   color: black;
-// `}
+
 export default Button
