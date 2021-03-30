@@ -5,6 +5,8 @@ import TodayWeather from "components/TodayWeather";
 import WeatherForecastCards from "components/WeatherForecastCards";
 import SwitchTemperatureScale from "components/SwitchTemperatureScale";
 import TodayHighlights from "components/TodayHighlights";
+// FUNCTIONS
+import stringToBool from "stringToBool";
 // STYLED COMPONENTS
 import Layout from "layout/Layout";
 import StyledAside from "styled-components/StyledAside";
@@ -28,7 +30,8 @@ class App extends React.Component{
         isRunningApiCitiesRequest: false,
         searchCity : '',
 
-        temperatureScale: 'c'
+        temperatureScale: 'c',
+        isSelectPlaceActive: true
     }
 
     // async componentDidMount() {
@@ -104,7 +107,7 @@ class App extends React.Component{
 
     handleChange = (event) => {
         const {name, value} = event.target
-        this.setState({[name]: value})
+        this.setState({[name]: stringToBool(value)})
     }
 
     //////////// TEMPERATURE ////////////
@@ -136,7 +139,10 @@ class App extends React.Component{
                 {/*<span className="material-icons">face</span>*/}
 
                 <StyledAside as="aside">
-                    <SelectPlace data={selectLocalizationPack} />
+                    {this.state.isSelectPlaceActive
+                        && <SelectPlace data = {selectLocalizationPack} />
+                    }
+
                     <TodayWeather
                         data = {this.state.apiWeatherData}
                         convertTemperature = {this.convertTemperature} />

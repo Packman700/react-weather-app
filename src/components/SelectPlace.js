@@ -7,7 +7,8 @@ import Small from "styled-components/small/Small";
 import FreeSpace from "styled-components/position/FreeSpace";
 import Ul from "styled-components/ul/Ul";
 import CityListItem from "styled-components/li/CityListItem";
-import CloseButton from "../styled-components/buttons/CloseButton";
+import CloseButton from "styled-components/buttons/CloseButton";
+import StyledSelectPlace from "styled-components/StyledSelectPlace";
 
 class SelectPlace extends React.Component{
     state = {
@@ -15,22 +16,25 @@ class SelectPlace extends React.Component{
         numberCitiesToShow: 5
     }
 
+    /// GENERATE LIST OF CITIES ///
     generatePlacesList = () => {
         let {apiCitiesData, weatherQuery, getDataFromApi} = this.props.data
 
         if (typeof apiCitiesData !== 'object' || apiCitiesData[0] === undefined)
-            return []
+            return [] // This empty is important!
             // Todo format this text
 
         // Limit cities to show
         apiCitiesData = apiCitiesData.slice(0, this.state.numberCitiesToShow)
 
+        // On click event
         const selectCityAction = (event) => {
             getDataFromApi(weatherQuery, event)
             this.setState({startSearch: false})
         }
 
-        const citesListElements = apiCitiesData.map(city=>
+        // List of item to return
+        return apiCitiesData.map(city=>
             <CityListItem
                 key={city.woeid}
                 data-key={city.woeid}
@@ -39,8 +43,6 @@ class SelectPlace extends React.Component{
                 {city.title}
             </CityListItem>
         )
-
-        return (citesListElements)
     }
 
     render() {
@@ -48,9 +50,9 @@ class SelectPlace extends React.Component{
                 handleChange, cityNameQuery,
                 isRunningApiCitiesRequest, apiCitiesData} = this.props.data
 
-        const whetherRequestSent = this.state.startSearch === true
+        const weatherRequestSent = this.state.startSearch === true
 
-        const citesListElements = whetherRequestSent ? this.generatePlacesList() : ''
+        const citesListElements = weatherRequestSent ? this.generatePlacesList() : ''
         const notShownCitiesElements = apiCitiesData !== undefined ? apiCitiesData.length - this.state.numberCitiesToShow : false
 
         const searchButtonAction = (event) => {
@@ -59,51 +61,55 @@ class SelectPlace extends React.Component{
         }
 
         return (
-            <FlexColumnCenter width="366px" >
-                <FlexRowCenter mb="26px" justifyContent="flex-end">
-                    <CloseButton />
-                </FlexRowCenter>
+            <StyledSelectPlace>
 
-                {/* SEARCH ENGINE */}
-                <FlexRowCenter mb="25px">
-                    {/* todo add validation (look input isn't empty) before send */}
-                    <FormatInputText searchIcon>
-                        <input
-                            type="text"
-                            name='searchCity'
-                            placeholder="search location"
-                            autoComplete="off"
-                            value={inputValue}
-                            onChange={handleChange}
-                        />
-                    </FormatInputText>
-                    <Button
-                        onClick={(event) => searchButtonAction(event)}
-                    >
-                        Search
-                    </Button>
-                </FlexRowCenter>
+                <FlexColumnCenter width="366px" >
+                    {/* CLOSE BUTTON */}
+                    <FlexRowCenter mb="26px" justifyContent="flex-end">
+                        <CloseButton name="isSelectPlaceActive" value="false" onClick={handleChange}/>
+                    </FlexRowCenter>
+
+                    {/* SEARCH ENGINE */}
+                    <FlexRowCenter mb="25px">
+                        {/* todo add validation (look input isn't empty) before send */}
+                        <FormatInputText searchIcon>
+                            <input
+                                type="text"
+                                name='searchCity'
+                                placeholder="search location"
+                                autoComplete="off"
+                                value={inputValue}
+                                onChange={handleChange}
+                            />
+                        </FormatInputText>
+                        <Button
+                            onClick={(event) => searchButtonAction(event)}
+                        >
+                            Search
+                        </Button>
+                    </FlexRowCenter>
 
 
-                {/* LIST OF CITIES */}
-                <Ul>
+                    {/* LIST OF CITIES */}
+                    <Ul>
+                        {
+                            !isRunningApiCitiesRequest
+                            && citesListElements
+                        }
+                    </Ul>
+
+                    {/* Reaction to all possible data state */}
                     {
-                        !isRunningApiCitiesRequest
-                        && citesListElements
+                        isRunningApiCitiesRequest
+                        ? <Small mb="2px">Loading data</Small>
+                        : notShownCitiesElements > 0
+                            ? <Small mb="12px">We hide {notShownCitiesElements} cities</Small>
+                            : citesListElements.length === 0 && this.state.startSearch
+                                ? <Small mb="2px"> Nothing found </Small>
+                                : <FreeSpace mb="12px"/>
                     }
-                </Ul>
-
-                {/* Reaction to all possible data state */}
-                {
-                    isRunningApiCitiesRequest
-                    ? <Small mb="2px">Loading data</Small>
-                    : notShownCitiesElements > 0
-                        ? <Small mb="12px">We hide {notShownCitiesElements} cities</Small>
-                        : citesListElements.length === 0 && this.state.startSearch
-                            ? <Small mb="2px"> Nothing found </Small>
-                            : <FreeSpace mb="12px"/>
-                }
-            </FlexColumnCenter>
+                </FlexColumnCenter>
+            </StyledSelectPlace>
         )
     }
 }
