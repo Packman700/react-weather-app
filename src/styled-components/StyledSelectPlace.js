@@ -9,7 +9,7 @@ const StyledSelectPlace = styled(FlexColumnCenter)`
   background: ${({theme}) => theme.colors.primaryLight};
   width: ${({theme}) => theme.widths.asideWidth}; 
   
-  @media ${({theme}) => theme.breakPoints.smallScreen}{
+  @media ${({theme}) => theme.breakPoints.verticalRotation}{
     & {
       width: 100vw;
       padding-top: 5px;

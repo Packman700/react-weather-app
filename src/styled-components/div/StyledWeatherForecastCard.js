@@ -1,17 +1,10 @@
 import styled from "styled-components";
+import CARD_TEMPLATE from "styled-components/div/CARD_TEMPLATE";
 
-const StyledWeatherForecastCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
+const StyledWeatherForecastCard = styled(CARD_TEMPLATE)`
   width: 120px;
   height: 177px;
-
-  background: ${({theme}) => theme.colors.primaryLight};
   padding: 18px 0;
-  margin: 16px 13px;
 `
 
 export default StyledWeatherForecastCard

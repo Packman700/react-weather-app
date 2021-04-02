@@ -65,7 +65,7 @@ const StyleWrapper = styled.div`
   width: 100vw;
   background-color: ${({theme}) => theme.colors.primaryDark};
 
-  @media ${({theme}) => theme.breakPoints.smallScreen} {
+  @media ${({theme}) => theme.breakPoints.verticalRotation} {
     & {
       flex-direction: column;
     }

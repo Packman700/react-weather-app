@@ -7,7 +7,7 @@ const StyledAside = styled(FlexColumnCenter)`
   background-color: ${({theme}) => theme.colors.primaryLight};
   padding: 25px calc(100%/25) 0 calc(100%/25);
   
-  @media ${({theme}) => theme.breakPoints.smallScreen}{
+  @media ${({theme}) => theme.breakPoints.verticalRotation}{
     &{
       width: 100vw;
     }

@@ -9,7 +9,7 @@ const StyledMain = styled.main`
   width: calc(100vw - ${({theme}) => theme.widths.asideWidth});
   padding: 25px calc(${({theme}) => theme.widths.asideWidth} / 7);
 
-  @media ${({theme}) => theme.breakPoints.smallScreen}{
+  @media ${({theme}) => theme.breakPoints.verticalRotation}{
     &{
       width: 100vw;
     }

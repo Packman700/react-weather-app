@@ -5,6 +5,7 @@ import StyledWeatherForecastCard from "styled-components/div/StyledWeatherForeca
 import ThinWhite from "styled-components/p/ThinWhite";
 import ThinLightGray from "styled-components/p/ThinLightGray";
 import Img from "styled-components/img/Img";
+import WeatherForecastCardsGrid from "styled-components/grid/WeatherForecastCardsGrid";
 
 function WeatherForecastCards(props){
     if (props?.data?.consolidated_weather === undefined) return null
@@ -40,7 +41,9 @@ function WeatherForecastCards(props){
 
     return (
         // todo align like in figma
-        <FlexRowCenter as="article" justifyContent="center">{weatherCards}</FlexRowCenter>
+        <FlexRowCenter justifyContent="center">
+            <WeatherForecastCardsGrid>{weatherCards}</WeatherForecastCardsGrid>
+        </FlexRowCenter>
     )
 }
 
