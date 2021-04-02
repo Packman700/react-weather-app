@@ -6,11 +6,14 @@ import WeatherForecastCards from "components/WeatherForecastCards";
 import SwitchTemperatureScale from "components/SwitchTemperatureScale";
 import TodayHighlights from "components/TodayHighlights";
 // FUNCTIONS
-import stringToBool from "stringToBool";
+import stringToBool from "helpers/stringToBool";
 // STYLED COMPONENTS
 import Layout from "layout/Layout";
 import StyledAside from "styled-components/StyledAside";
 import StyledMain from "styled-components/StyledMain";
+import SearchGreyButton from "styled-components/buttons/SearchGreyButton";
+import LocationButton from "styled-components/buttons/LocationButton";
+import FlexRowCenter from "styled-components/position/FlexRowCenter";
 
 class App extends React.Component{
     constructor() {
@@ -142,6 +145,11 @@ class App extends React.Component{
                     {this.state.isSelectPlaceActive
                         && <SelectPlace data = {selectLocalizationPack} />
                     }
+
+                    <FlexRowCenter mt="13px" mb="52px" width="366px">
+                        <SearchGreyButton onClick={() => this.setState({isSelectPlaceActive: true})}> Search for places </SearchGreyButton>
+                        <LocationButton /> {/* Add onclick here */}
+                    </FlexRowCenter>
 
                     <TodayWeather
                         data = {this.state.apiWeatherData}

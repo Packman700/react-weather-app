@@ -19,7 +19,7 @@ const InputTextDiv = styled.div`
       width: ${({searchIcon}) => searchIcon? "208px": "228px"} ;
       color: ${({theme}) => theme.colors.grayMuted};
       font-size: 1em;
-      font-weight: ${({theme}) => theme.fonts.weight.thin};
+      font-weight: 500;
       margin-left: ${({searchIcon}) => searchIcon? "20px": 0}; // make space for icon
       :focus {
         outline: none;

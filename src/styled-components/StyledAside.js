@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FlexColumnCenter from "./position/FlexColumnCenter";
+import FlexColumnCenter from "styled-components/position/FlexColumnCenter";
 
 const StyledAside = styled(FlexColumnCenter)`
   

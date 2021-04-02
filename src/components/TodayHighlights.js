@@ -1,5 +1,5 @@
 import React from "react";
-import compassArrow from "./navigation.png"
+import compassArrow from "components/navigation.png"
 
 function TodayHighlights(props){
     if (props?.data?.consolidated_weather === undefined) return null

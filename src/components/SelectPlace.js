@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from "styled-components/buttons/Button";
+import SearchBlueButton from "styled-components/buttons/SearchBlueButton";
 import FormatInputText from "styled-components/input/InputText";
 import FlexRowCenter from "styled-components/position/FlexRowCenter";
 import FlexColumnCenter from "styled-components/position/FlexColumnCenter";
@@ -86,11 +86,11 @@ class SelectPlace extends React.Component{
                                 onChange={handleChange}
                             />
                         </FormatInputText>
-                        <Button
+                        <SearchBlueButton
                             onClick={(event) => searchButtonAction(event)}
                         >
                             Search
-                        </Button>
+                        </SearchBlueButton>
                     </FlexRowCenter>
 
 

@@ -6,6 +6,7 @@ const StyledSelectPlace = styled(FlexColumnCenter)`
   top:0;
   min-height: 100vh;
   background: ${({theme}) => theme.colors.primaryLight};
+  width: ${({theme}) => theme.widths.asideWidth}; 
   
   @media ${({theme}) => theme.breakPoints.smallScreen}{
     & {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import styledButtonTemplate from "./StyledButtonTemplate";
+import styledButtonTemplate from "styled-components/buttons/StyledButtonTemplate";
 
 const CloseButton = styled(styledButtonTemplate)`
   ::before{
