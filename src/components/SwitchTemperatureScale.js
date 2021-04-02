@@ -1,25 +1,34 @@
 import React from "react";
+import TemperatureScaleButton from "styled-components/buttons/TemperatureScaleButton";
+import FlexRowCenter from "styled-components/position/FlexRowCenter";
+import FreeSpace from "../styled-components/position/FreeSpace";
 
 function SwitchTemperatureScale(props){
     // eslint-disable-next-line no-unused-vars
     const {handleChange, selectedTemperatureScale} = props.data
     return(
-        <div>
-            {/*Todo add some style to recognise with scale is selected*/}
-            <button
+        <FlexRowCenter
+            justifyContent="flex-end"
+        >
+            <TemperatureScaleButton
+                active = {selectedTemperatureScale === 'c' && true}
                 onClick={handleChange}
                 name="temperatureScale"
                 value="c"
-            > °C
-            </button>
+            > C {/* ° is ::before */}
+            </TemperatureScaleButton>
 
-            <button
+            <FreeSpace mr="12px"/>
+
+            <TemperatureScaleButton
+                active = {selectedTemperatureScale === 'f' && true}
                 onClick={handleChange}
                 name="temperatureScale"
                 value="f"
-            > °F
-            </button>
-        </div>
+            > F {/* ° is ::before */}
+            </TemperatureScaleButton>
+
+        </FlexRowCenter>
     )
 }
 

@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 const StyledMain = styled.main`
-   width: calc(100vw - ${({theme}) => theme.widths.asideWidth});
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  
+  width: calc(100vw - ${({theme}) => theme.widths.asideWidth});
   //width: 20vw ;
 
   @media ${({theme}) => theme.breakPoints.smallScreen}{

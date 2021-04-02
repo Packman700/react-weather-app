@@ -1,5 +1,6 @@
 import React from "react";
 import compassArrow from "components/navigation.png"
+import FlexRowCenter from "styled-components/position/FlexRowCenter";
 
 function TodayHighlights(props){
     if (props?.data?.consolidated_weather === undefined) return null
@@ -17,7 +18,7 @@ function TodayHighlights(props){
     visibility = (Math.round(visibility * 10)/10).toString().replace('.',',')
 
     return(
-        <section>
+        <FlexRowCenter as="section">
             {/* Todo add semantic task names */}
             <article>
                 <header>Wind status</header>
@@ -49,7 +50,7 @@ function TodayHighlights(props){
                 <header>Air Pressure</header>
                 <p>{airPressure} mb</p>
             </article>
-        </section>
+        </FlexRowCenter>
     )
 }
 

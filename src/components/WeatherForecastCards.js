@@ -1,5 +1,6 @@
 import React from "react";
 import dateFormat from "dateformat";
+import FlexRowCenter from "styled-components/position/FlexRowCenter";
 
 function WeatherForecastCards(props){
     if (props?.data?.consolidated_weather === undefined) return null
@@ -32,7 +33,7 @@ function WeatherForecastCards(props){
     })
 
     return (
-        <div>{weatherCards}</div>
+        <FlexRowCenter as="article">{weatherCards}</FlexRowCenter>
     )
 }
 

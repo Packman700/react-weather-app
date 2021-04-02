@@ -143,30 +143,34 @@ class App extends React.Component{
 
                 <StyledAside as="aside">
                     {this.state.isSelectPlaceActive
-                        && <SelectPlace data = {selectLocalizationPack} />
+                    && <SelectPlace data={selectLocalizationPack}/>
                     }
 
                     <FlexRowCenter mt="13px" mb="52px" width="366px">
-                        <SearchGreyButton onClick={() => this.setState({isSelectPlaceActive: true})}> Search for places </SearchGreyButton>
-                        <LocationButton /> {/* Add onclick here */}
+                        <SearchGreyButton onClick={() => this.setState({isSelectPlaceActive: true})}>
+                            Search for places
+                        </SearchGreyButton>
+                        <LocationButton/> {/* Add onclick here */}
                     </FlexRowCenter>
 
                     <TodayWeather
-                        data = {this.state.apiWeatherData}
-                        convertTemperature = {this.convertTemperature} />
+                        data={this.state.apiWeatherData}
+                        convertTemperature={this.convertTemperature}/>
                 </StyledAside>
                 <StyledMain>
                     <SwitchTemperatureScale
-                        data = {{handleChange: this.handleChange,
-                        selectedTemperatureScale: this.state.temperatureScale}} />
+                        data={{
+                            handleChange: this.handleChange,
+                            selectedTemperatureScale: this.state.temperatureScale
+                        }}/>
                     <WeatherForecastCards
-                        data = {this.state.apiWeatherData}
-                        convertTemperature = {this.convertTemperature} />
+                        data={this.state.apiWeatherData}
+                        convertTemperature={this.convertTemperature}/>
 
-                    <TodayHighlights data = {this.state.apiWeatherData} />
+                    <TodayHighlights data={this.state.apiWeatherData}/>
                 </StyledMain>
             </Layout>
-        )
+        );
     }
 }
 
