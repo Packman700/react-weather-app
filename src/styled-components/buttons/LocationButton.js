@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import styledButtonTemplate from "styled-components/buttons/StyledButtonTemplate";
+import BUTTON_TEMPLATE from "styled-components/buttons/BUTTON_TEMPLATE";
 
-const LocationButton = styled(styledButtonTemplate)`
+const LocationButton = styled(BUTTON_TEMPLATE)`
   height: 40px;
   width: 40px;
   

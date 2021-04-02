@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import styledButtonTemplate from "styled-components/buttons/StyledButtonTemplate";
+import BUTTON_TEMPLATE from "styled-components/buttons/BUTTON_TEMPLATE";
 
-const CloseButton = styled(styledButtonTemplate)`
+const CloseButton = styled(BUTTON_TEMPLATE)`
   ::before{
     font-family: 'Material Icons', 'Raleway', sans-serif;
     font-size: 34px;

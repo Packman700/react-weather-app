@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import StyledButtonTemplate from "styled-components/buttons/StyledButtonTemplate";
+import StyledButtonTemplate from "styled-components/buttons/BUTTON_TEMPLATE";
 
 const TemperatureScaleButton = styled(StyledButtonTemplate)`
   position: relative;

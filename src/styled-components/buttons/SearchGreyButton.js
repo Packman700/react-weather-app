@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import styledButtonTemplate from "styled-components/buttons/StyledButtonTemplate";
+import BUTTON_TEMPLATE from "styled-components/buttons/BUTTON_TEMPLATE";
 
-const SearchGrayButton = styled(styledButtonTemplate)`
+const SearchGrayButton = styled(BUTTON_TEMPLATE)`
   // Default button
   height: 40px;
   padding: 18px;

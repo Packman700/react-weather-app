@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const styledButtonTemplate = styled.button`
+const BUTTON_TEMPLATE = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,4 +13,4 @@ const styledButtonTemplate = styled.button`
   background: transparent;
 `
 
-export default styledButtonTemplate
+export default BUTTON_TEMPLATE
