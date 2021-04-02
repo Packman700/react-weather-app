@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     color: ${({theme}) => theme.colors.white};
+    background: ${({theme}) => theme.colors.primaryDark};
     overflow-x: hidden; // Disable horizontal scrollbar
     overflow: overlay; // For scroll bar // Todo Replace to more supported way
   }

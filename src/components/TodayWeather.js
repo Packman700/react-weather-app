@@ -23,7 +23,7 @@ function TodayWeather(props){
     const[formattedTemperature,scaleMark] = props.convertTemperature(temperature)
 
     return(
-        <FlexColumnCenter as="article">
+        <FlexColumnCenter as="article" mb="24px">
             <img src={`${PHOTOS_LOCATION}${weatherImage}.svg`} alt={`${weatherName} icon`} height="234px"/>
             <TodayTemperatureH1 mt="25px" mb="15px">
                 {formattedTemperature}

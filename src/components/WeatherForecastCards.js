@@ -1,6 +1,10 @@
 import React from "react";
 import dateFormat from "dateformat";
 import FlexRowCenter from "styled-components/position/FlexRowCenter";
+import StyledWeatherForecastCard from "styled-components/div/StyledWeatherForecastCard";
+import ThinWhite from "styled-components/p/ThinWhite";
+import ThinLightGray from "styled-components/p/ThinLightGray";
+import Img from "styled-components/img/Img";
 
 function WeatherForecastCards(props){
     if (props?.data?.consolidated_weather === undefined) return null
@@ -23,17 +27,20 @@ function WeatherForecastCards(props){
         const [formattedMinTemperature] = props.convertTemperature(minTemperature)
 
         return (
-            <div key={id}>
-                <h2>{date}</h2>
-                <img src={`${PHOTOS_LOCATION}${weatherImage}.svg`} alt={`${weatherName} icon`} height="100px"/>
-                <p>{formattedMaxTemperature}{scaleMark}</p>
-                <p>{formattedMinTemperature}{scaleMark}</p>
-            </div>
+            <StyledWeatherForecastCard key={id}>
+                <ThinWhite as="header">{date}</ThinWhite>
+                <Img src={`${PHOTOS_LOCATION}${weatherImage}.svg`} alt={`${weatherName} icon`} height="56px" mt="-5px"/>
+                <FlexRowCenter width="70px">
+                    <ThinWhite>{formattedMaxTemperature}{scaleMark}</ThinWhite>
+                    <ThinLightGray>{formattedMinTemperature}{scaleMark}</ThinLightGray>
+                </FlexRowCenter>
+            </StyledWeatherForecastCard>
         )
     })
 
     return (
-        <FlexRowCenter as="article">{weatherCards}</FlexRowCenter>
+        // todo align like in figma
+        <FlexRowCenter as="article" justifyContent="center">{weatherCards}</FlexRowCenter>
     )
 }
 

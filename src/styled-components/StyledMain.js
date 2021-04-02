@@ -7,7 +7,7 @@ const StyledMain = styled.main`
   justify-content: flex-start;
   
   width: calc(100vw - ${({theme}) => theme.widths.asideWidth});
-  //width: 20vw ;
+  padding: 25px calc(${({theme}) => theme.widths.asideWidth} / 7);
 
   @media ${({theme}) => theme.breakPoints.smallScreen}{
     &{

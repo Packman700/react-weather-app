@@ -146,7 +146,7 @@ class App extends React.Component{
                     && <SelectPlace data={selectLocalizationPack}/>
                     }
 
-                    <FlexRowCenter mt="13px" mb="52px" width="366px">
+                    <FlexRowCenter mb="52px" width="366px">
                         <SearchGreyButton onClick={() => this.setState({isSelectPlaceActive: true})}>
                             Search for places
                         </SearchGreyButton>
