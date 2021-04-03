@@ -1,7 +1,5 @@
-console.log(window.innerWidth)
-
 const widths = {
-    asideWidth: "460px"
-}
+  asideWidth: "460px",
+};
 
-export default widths
+export default widths;

@@ -1,5 +1,5 @@
-import React from "react"
-import styled, {createGlobalStyle , ThemeProvider} from "styled-components"
+import React from "react";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import theme from "utils/theme";
 
 const GlobalStyle = createGlobalStyle`
@@ -9,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     padding: 0;
     margin: 0;
-    color: ${({theme}) => theme.colors.white};
-    background: ${({theme}) => theme.colors.primaryDark};
+    color: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.primaryDark};
     overflow-x: hidden; // Disable horizontal scrollbar
     overflow: overlay; // For scroll bar // Todo Replace to more supported way
   }
@@ -57,31 +57,28 @@ const GlobalStyle = createGlobalStyle`
   }
 }
   
-`
+`;
 
 const StyleWrapper = styled.div`
   display: flex;
   min-height: 100vh;
   width: 100vw;
-  background-color: ${({theme}) => theme.colors.primaryDark};
+  background-color: ${({ theme }) => theme.colors.primaryDark};
 
-  @media ${({theme}) => theme.breakPoints.verticalRotation} {
+  @media ${({ theme }) => theme.breakPoints.verticalRotation} {
     & {
       flex-direction: column;
     }
   }
-`
+`;
 
-const Layout = ({children}) => (
-    <ThemeProvider theme={theme}>
-        <>
-            <GlobalStyle/>
-            <StyleWrapper>
-                {children}
-            </StyleWrapper>
-        </>
-    </ThemeProvider>
-)
+const Layout = ({ children }) => (
+  <ThemeProvider theme={theme}>
+    <>
+      <GlobalStyle />
+      <StyleWrapper>{children}</StyleWrapper>
+    </>
+  </ThemeProvider>
+);
 
-export default Layout
-
+export default Layout;

@@ -9,7 +9,7 @@ const CARD_TEMPLATE = styled.div`
   width: 100px;
   height: 100px;
 
-  background: ${({theme}) => theme.colors.primaryLight};
-`
+  background: ${({ theme }) => theme.colors.primaryLight};
+`;
 
-export default CARD_TEMPLATE
+export default CARD_TEMPLATE;

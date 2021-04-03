@@ -5,8 +5,8 @@ const FlexColumnCenter = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: ${({width}) => width ? width : 'auto'};
-  margin-bottom: ${({mb}) => mb? mb:0};
-`
+  width: ${({ width }) => (width ? width : "auto")};
+  margin-bottom: ${({ mb }) => (mb ? mb : 0)};
+`;
 
-export default FlexColumnCenter
+export default FlexColumnCenter;

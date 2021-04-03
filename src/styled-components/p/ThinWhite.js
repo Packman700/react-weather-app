@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const ThinWhite = styled.p` 
+const ThinWhite = styled.p`
   font-size: 16px;
   font-weight: 100;
-`
+`;
 
-export default ThinWhite
+export default ThinWhite;
