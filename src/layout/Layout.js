@@ -1,6 +1,6 @@
-import React from "react";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import theme from "utils/theme";
+import React from 'react'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import theme from 'utils/theme'
 
 const GlobalStyle = createGlobalStyle`
 
@@ -57,28 +57,28 @@ const GlobalStyle = createGlobalStyle`
   }
 }
   
-`;
+`
 
 const StyleWrapper = styled.div`
-  display: flex;
-  min-height: 100vh;
-  width: 100vw;
-  background-color: ${({ theme }) => theme.colors.primaryDark};
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: ${({ theme }) => theme.colors.primaryDark};
 
-  @media ${({ theme }) => theme.breakPoints.verticalRotation} {
-    & {
-      flex-direction: column;
+    @media ${({ theme }) => theme.breakPoints.verticalRotation} {
+        & {
+            flex-direction: column;
+        }
     }
-  }
-`;
+`
 
 const Layout = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <>
-      <GlobalStyle />
-      <StyleWrapper>{children}</StyleWrapper>
-    </>
-  </ThemeProvider>
-);
+    <ThemeProvider theme={theme}>
+        <>
+            <GlobalStyle />
+            <StyleWrapper>{children}</StyleWrapper>
+        </>
+    </ThemeProvider>
+)
 
-export default Layout;
+export default Layout
