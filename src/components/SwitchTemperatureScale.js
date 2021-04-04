@@ -7,7 +7,7 @@ function SwitchTemperatureScale(props) {
     // eslint-disable-next-line no-unused-vars
     const { handleChange, selectedTemperatureScale } = props.data
     return (
-        <FlexRowCenter justifyContent='flex-end'>
+        <FlexRowCenter justifyContent='flex-end' mb='25px'>
             <TemperatureScaleButton
                 active={selectedTemperatureScale === 'c' && true}
                 onClick={handleChange}

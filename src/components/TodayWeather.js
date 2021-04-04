@@ -35,12 +35,12 @@ function TodayWeather(props) {
                 alt={`${weatherName} icon`}
                 height='234px'
             />
-            <TodayTemperatureH1 mt='25px' mb='15px'>
+            <TodayTemperatureH1 mt='36px' mb='25px'>
                 {formattedTemperature}
                 <TodayTemperatureSub>{scaleMark}</TodayTemperatureSub>
             </TodayTemperatureH1>
             <WeatherName>{weatherName}</WeatherName>
-            <FlexRowCenter width='160px' mt='44px' mb='24px'>
+            <FlexRowCenter width='160px' mt='62px' mb='40px'>
                 <DarkGrayText>Today</DarkGrayText>
                 <DarkGrayText as='span' aria-hidden='true'>
                     •

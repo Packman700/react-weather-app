@@ -14,6 +14,7 @@ import StyledMain from 'styled-components/StyledMain'
 import SearchGreyButton from 'styled-components/buttons/SearchGreyButton'
 import LocationButton from 'styled-components/buttons/LocationButton'
 import FlexRowCenter from 'styled-components/position/FlexRowCenter'
+import Small from 'styled-components/small/Small'
 
 class App extends React.Component {
     constructor() {
@@ -183,6 +184,10 @@ class App extends React.Component {
                     />
 
                     <TodayHighlights data={this.state.apiWeatherData} />
+
+                    <Small style={{ alignSelf: 'center', marginTop: '22px' }}>
+                        Created by Packman700
+                    </Small>
                 </StyledMain>
             </Layout>
         )

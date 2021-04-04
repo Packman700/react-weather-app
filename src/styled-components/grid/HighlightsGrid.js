@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const HighlightsGrid = styled.section`
+const HighlightsGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 328px);
     grid-template-rows: 204px 160px;

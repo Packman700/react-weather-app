@@ -6,6 +6,7 @@ const StyledHighlightCard = styled(CARD_TEMPLATE)`
     width: 328px;
 
     padding-top: 22px;
+    padding-bottom: 26px;
 
     margin-left: ${({ ml }) => ml && ml};
     margin-right: ${({ mr }) => mr && mr};

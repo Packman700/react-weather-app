@@ -62,7 +62,7 @@ function WeatherForecastCards(props) {
 
     return (
         // todo align like in figma
-        <FlexRowCenter justifyContent='center'>
+        <FlexRowCenter justifyContent='center' mb='32px'>
             <WeatherForecastCardsGrid>{weatherCards}</WeatherForecastCardsGrid>
         </FlexRowCenter>
     )
