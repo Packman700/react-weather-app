@@ -5,8 +5,10 @@ import TodayWeather from 'components/TodayWeather'
 import WeatherForecastCards from 'components/WeatherForecastCards'
 import SwitchTemperatureScale from 'components/SwitchTemperatureScale'
 import TodayHighlights from 'components/TodayHighlights'
+import LoadingWeatherData from 'components/LoadingWeatherData'
 // FUNCTIONS
 import stringToBool from 'helpers/stringToBool'
+import getLatLong from 'helpers/getLatLong'
 // STYLED COMPONENTS
 import Layout from 'layout/Layout'
 import StyledAside from 'styled-components/StyledAside'
@@ -22,7 +24,10 @@ class App extends React.Component {
         this.getDataFromApi = this.getDataFromApi.bind(this)
         this.cityNameQuery = this.cityNameQuery.bind(this)
         this.weatherQuery = this.weatherQuery.bind(this)
-        // this.latLongQuery = this.latLongQuery.bind(this)
+        // prettier-ignore
+        this.currentLocationQueryProcedure = this.currentLocationQueryProcedure.bind(this)
+        // prettier-ignore
+        this.getWeoidFromCurrentLocation = this.getWeoidFromCurrentLocation.bind(this)
     }
 
     state = {
@@ -35,33 +40,21 @@ class App extends React.Component {
         searchCity: '',
 
         temperatureScale: 'c',
-        isSelectPlaceActive: true,
+        isSelectPlaceActive: false,
     }
 
-    // async componentDidMount() {
-    //     if ("geolocation" in navigator) {
-    //         navigator.geolocation.getCurrentPosition(function(position) {
-    //             const {latitude:lat, longitude:long} = position.coords
-    //             console.log(lat, long)
-    //         })
-    //         await this.getDataFromApi(this.latLongQuery)
-    //     } else {
-    //         console.log("Not Available");
-    //     }
-    // }
+    async componentDidMount() {
+        await this.currentLocationQueryProcedure()
+    }
 
     ///////// GET DATA FROM API /////////
     async getDataFromApi(queryFunction, event) {
-        // 'query', 'lattlong'
-        // Api request
         const [response, storeLocalization] = await queryFunction(event)
-
         // Save data to state
         try {
             if (response.status === 200 && response.ok === true) {
                 const apiData = await response.json()
                 this.setState({ [storeLocalization]: apiData })
-                console.log('Success get data')
             } else
                 return Error(
                     `Failed connect to API: ${response.status} ${response.statusText}`
@@ -97,18 +90,29 @@ class App extends React.Component {
         return [apiResponse, 'apiWeatherData']
     }
 
-    // async latLongQuery(lat, long){
-    //     const {apiAddress} = this.state
-    //
-    //     this.setState({isRunningApiCitiesRequest:true})
-    //     const apiLatLongResponse = await fetch(`${apiAddress}search/?lattlong=51.919438,19.145136`)
-    //     this.setState({isRunningApiCitiesRequest:false})
-    //     const woeid = await apiLatLongResponse.json()[0].woeid
-    //
-    //     await this.getDataFromApi()
-    //     console.log(jsonResponse)
-    //     return [apiResponse, 'apiCitiesData']
-    // }
+    async currentLocationQueryProcedure() {
+        this.setState({ isRunningApiWeatherRequest: true })
+        const woeid = await this.getWeoidFromCurrentLocation()
+        const fakeEvent = { target: { dataset: { key: woeid } } }
+        await this.getDataFromApi(await this.weatherQuery, fakeEvent)
+    }
+
+    ////RELATED TO GET DATA FROM API////
+
+    async getWeoidFromCurrentLocation() {
+        const { apiAddress } = this.state
+        const [lat, long] = await getLatLong()
+
+        this.setState({ isRunningApiCitiesRequest: true })
+        const apiLatLongResponse = await fetch(
+            `${apiAddress}search/?lattlong=${lat},${long}`
+        )
+        this.setState({ isRunningApiCitiesRequest: false })
+        const nearestCity = await apiLatLongResponse.json()
+        const woeid = await nearestCity[0].woeid
+
+        return woeid
+    }
 
     /////////////////////////////////////
 
@@ -147,7 +151,9 @@ class App extends React.Component {
 
         return (
             <Layout>
-                {/*<span className="material-icons">face</span>*/}
+                {this.state.isRunningApiWeatherRequest && (
+                    <LoadingWeatherData />
+                )}
 
                 <StyledAside as='aside'>
                     {this.state.isSelectPlaceActive && (
@@ -162,7 +168,9 @@ class App extends React.Component {
                         >
                             Search for places
                         </SearchGreyButton>
-                        <LocationButton /> {/* Add onclick here */}
+                        <LocationButton
+                            onClick={this.currentLocationQueryProcedure}
+                        />
                     </FlexRowCenter>
 
                     <TodayWeather
@@ -170,6 +178,7 @@ class App extends React.Component {
                         convertTemperature={this.convertTemperature}
                     />
                 </StyledAside>
+
                 <StyledMain>
                     <SwitchTemperatureScale
                         data={{
@@ -178,6 +187,7 @@ class App extends React.Component {
                                 .temperatureScale,
                         }}
                     />
+
                     <WeatherForecastCards
                         data={this.state.apiWeatherData}
                         convertTemperature={this.convertTemperature}
