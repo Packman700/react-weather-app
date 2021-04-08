@@ -18,6 +18,10 @@ import LocationButton from 'styled-components/buttons/LocationButton'
 import FlexRowCenter from 'styled-components/position/FlexRowCenter'
 import Small from 'styled-components/small/Small'
 
+const CORS_ANYWHERE_PREFIX = 'https://cors-anywhere.herokuapp.com/'
+const API_ADDRESS = 'www.metaweather.com/'
+const PREFIX = CORS_ANYWHERE_PREFIX + API_ADDRESS
+
 class App extends React.Component {
     constructor() {
         super()
@@ -31,7 +35,7 @@ class App extends React.Component {
     }
 
     state = {
-        apiAddress: '/api/location/',
+        apiAddress: PREFIX + 'api/location/', // WHEN USE http-proxy-middleware can delete prefix
         apiWeatherData: [],
         isRunningApiWeatherRequest: false,
 
