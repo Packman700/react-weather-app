@@ -4,6 +4,47 @@ object-assign
 @license MIT
 */
 
+/*!
+ * Array of passes.
+ *
+ * A `pass` is just a function that is executed on `req, res, options`
+ * so that you can easily add new checks while still keeping the base
+ * flexible.
+ */
+
+/*!
+ * Array of passes.
+ *
+ * A `pass` is just a function that is executed on `req, socket, options`
+ * so that you can easily add new checks while still keeping the base
+ * flexible.
+ */
+
+/*!
+ * Caron dimonio, con occhi di bragia
+ * loro accennando, tutte le raccoglie;
+ * batte col remo qualunque s’adagia 
+ *
+ * Charon the demon, with the eyes of glede,
+ * Beckoning to them, collects them all together,
+ * Beats with his oar whoever lags behind
+ *          
+ *          Dante - The Divine Comedy (Canto III)
+ */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
 /** @license React v0.20.2
  * scheduler.production.min.js
  *
