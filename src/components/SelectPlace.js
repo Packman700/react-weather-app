@@ -106,6 +106,7 @@ class SelectPlace extends React.Component {
                                 autoComplete='off'
                                 value={inputValue}
                                 onChange={handleChange}
+                                onKeyUp={(event => {event.keyCode === 13 && searchButtonAction(event)})}
                             />
                         </FormatInputText>
                         <SearchBlueButton

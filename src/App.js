@@ -35,7 +35,8 @@ class App extends React.Component {
     }
 
     state = {
-        apiAddress: PREFIX + 'api/location/', // WHEN USE http-proxy-middleware can delete prefix
+        apiAddress: PREFIX + 'api/location/', // Production with cros-anyware
+        // apiAddress: 'api/location/', // Develop with http-proxy-middleware
         apiWeatherData: [],
         isRunningApiWeatherRequest: false,
 

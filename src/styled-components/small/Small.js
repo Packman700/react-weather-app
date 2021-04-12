@@ -4,6 +4,7 @@ const Small = styled.small`
     color: ${({ theme }) => theme.colors.grayMuted};
     font-size: 16px;
     margin-bottom: ${({ mb }) => (mb ? mb : 0)};
+    margin-top: ${({ mt }) => (mt ? mt : 0)};
 `
 
 export default Small

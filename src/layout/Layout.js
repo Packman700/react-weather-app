@@ -14,19 +14,28 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden; // Disable horizontal scrollbar
     overflow: overlay; // For scroll bar // Todo Replace to more supported way
   }
-  
+
   cite {
     font-style: normal;
   }
-  
+
+  a {
+    text-decoration: none;
+    color: #621b62;
+  }
+
+  a:active {
+    color: #4e5470;
+  }
+
   *, *::before, *::after {
     padding: 0;
     margin: 0;
     font-family: 'Raleway', sans-serif;
     box-sizing: border-box;
   }
-  
-  :root{
+
+  :root {
     font-size: 16px;
   }
 
@@ -43,20 +52,20 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.3);
   }
-  
+
   // Off animation if user turn off this on his system
   @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-delay: -1ms !important;
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-    background-attachment: initial !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0s !important;
-    transition-delay: 0s !important;
+    *, ::before, ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
   }
-}
-  
+
 `
 
 const StyleWrapper = styled.div`
