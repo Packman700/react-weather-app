@@ -15,6 +15,12 @@ const GlobalStyle = createGlobalStyle`
     overflow: overlay; // For scroll bar // Todo Replace to more supported way
   }
 
+  @media ${({ theme }) => theme.breakPoints.verticalRotation} {
+      body{
+        overflow-x: hidden; // Disable horizontal scrollbar
+      }
+    }
+  
   cite {
     font-style: normal;
   }

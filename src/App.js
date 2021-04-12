@@ -17,6 +17,7 @@ import SearchGreyButton from 'styled-components/buttons/SearchGreyButton'
 import LocationButton from 'styled-components/buttons/LocationButton'
 import FlexRowCenter from 'styled-components/position/FlexRowCenter'
 import Small from 'styled-components/small/Small'
+import CloudIcon from './styled-components/icon/CloudIcon'
 
 const CORS_ANYWHERE_PREFIX = 'https://cors-anywhere.herokuapp.com/'
 const API_ADDRESS = 'www.metaweather.com/'
@@ -35,8 +36,8 @@ class App extends React.Component {
     }
 
     state = {
-        apiAddress: PREFIX + 'api/location/', // Production with cros-anyware
-        // apiAddress: 'api/location/', // Develop with http-proxy-middleware
+        // apiAddress: PREFIX + 'api/location/', // Production with cros-anyware
+        apiAddress: 'api/location/', // Develop with http-proxy-middleware
         apiWeatherData: [],
         isRunningApiWeatherRequest: false,
 
@@ -157,13 +158,18 @@ class App extends React.Component {
         return (
             <Layout>
                 {this.state.isRunningApiWeatherRequest && (
-                    <LoadingWeatherData />
+                     <LoadingWeatherData />
                 )}
 
                 <StyledAside as='aside'>
                     {this.state.isSelectPlaceActive && (
                         <SelectPlace data={selectLocalizationPack} />
                     )}
+
+                    <CloudIcon size="176px" left1="-5%" top="16%" right2="84%"/>
+                    <CloudIcon size="215px" left1="-4%" top="45%" right2="80%"/>
+                    <CloudIcon size="176px" left1="25%" top="32%" left2="80%"/>
+                    <CloudIcon size="127px" left1="27%" top="62%" left2="84%"/>
 
                     <FlexRowCenter mb='52px' width='366px'>
                         <SearchGreyButton
