@@ -146,7 +146,6 @@ class App extends React.Component {
     }
 
     render() {
-        // Todo load weather data animation
         const selectLocalizationPack = {
             inputValue: this.state.searchCity,
             apiCitiesData: this.state.apiCitiesData,
@@ -206,8 +205,13 @@ class App extends React.Component {
                         convertTemperature={this.convertTemperature}
                     />
 
-                    <TodayHighlights data={this.state.apiWeatherData} />
-
+                    <TodayHighlights
+                        data={this.state.apiWeatherData}
+                        key={
+                            this?.state?.apiWeatherData
+                                ?.consolidated_weather?.[0]?.id
+                        }
+                    />
                     <Small style={{ alignSelf: 'center', marginTop: '22px' }}>
                         Created by Packman700
                     </Small>

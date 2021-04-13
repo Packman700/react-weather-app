@@ -38,7 +38,7 @@ function WeatherForecastCards(props) {
             )
 
             return (
-                <StyledWeatherForecastCard key={id}>
+                <StyledWeatherForecastCard key={id} index={index}>
                     <ThinWhite as='header'>{date}</ThinWhite>
                     <Img
                         src={`${PHOTOS_LOCATION}${weatherImage}.svg`}

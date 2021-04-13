@@ -34,25 +34,22 @@ function TodayHighlights(props) {
         <FlexColumnCenter mt='20px' as='section' width='100%'>
             <H2 mb='20px'>Today's Highlights</H2>
             <HighlightsGrid>
-                {/* Todo add semantic task names */}
-                <StyledHighlightCard as='article'>
+                <StyledHighlightCard key={1} as='article' index='0'>
                     <HighlightHeader>Wind status</HighlightHeader>
                     <BigBold WordSpacing='-0.8rem'>
                         {windSpeed} <HighlightSub> mph </HighlightSub>
                     </BigBold>
-                    {/*Todo connect to materal icons (and replace this png image)*/}
                     <FlexRowCenter width='80px' justifyContent='space-around'>
                         <WindDirectionIcon rotateDeg={compassRotate} />
                         <ThinWhite>{windDirection}</ThinWhite>
                     </FlexRowCenter>
                 </StyledHighlightCard>
 
-                <StyledHighlightCard as='article'>
+                <StyledHighlightCard key={2} as='article' index='1'>
                     <HighlightHeader>Humidity</HighlightHeader>
                     <BigBold WordSpacing='-0.8rem' y='7px'>
                         {humidity} <HighlightSub> % </HighlightSub>
                     </BigBold>
-                    {/*Todo later show this numbers like in figma*/}
                     <FlexColumnCenter width='240px' height='27px' y='7px'>
                         <FlexRowCenter>
                             <ProgressBarSmall>0</ProgressBarSmall>
@@ -70,14 +67,14 @@ function TodayHighlights(props) {
                     </FlexColumnCenter>
                 </StyledHighlightCard>
 
-                <StyledHighlightCard as='article' small>
+                <StyledHighlightCard key={3} as='article' index='2' small>
                     <HighlightHeader>Visibility</HighlightHeader>
                     <BigBold>
                         {visibility} <HighlightSub>miles</HighlightSub>
                     </BigBold>
                 </StyledHighlightCard>
 
-                <StyledHighlightCard as='article' small>
+                <StyledHighlightCard key={4} as='article' index='3' small>
                     <HighlightHeader>Air Pressure</HighlightHeader>
                     <BigBold>
                         {airPressure} <HighlightSub>mb</HighlightSub>
