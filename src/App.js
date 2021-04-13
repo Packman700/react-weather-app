@@ -9,6 +9,7 @@ import LoadingWeatherData from 'components/LoadingWeatherData'
 // FUNCTIONS
 import stringToBool from 'helpers/stringToBool'
 import getLatLong from 'helpers/getLatLong'
+import sleep from 'helpers/sleep'
 // STYLED COMPONENTS
 import Layout from 'layout/Layout'
 import StyledAside from 'styled-components/StyledAside'
@@ -91,6 +92,7 @@ class App extends React.Component {
 
         this.setState({ isRunningApiWeatherRequest: true })
         const apiResponse = await fetch(`${apiAddress}${key}/`)
+        await sleep(150) // Wait to load images
         this.setState({ isRunningApiWeatherRequest: false })
 
         return [apiResponse, 'apiWeatherData']
@@ -158,18 +160,19 @@ class App extends React.Component {
         return (
             <Layout>
                 {this.state.isRunningApiWeatherRequest && (
-                     <LoadingWeatherData />
+                    <LoadingWeatherData />
                 )}
 
                 <StyledAside as='aside'>
                     {this.state.isSelectPlaceActive && (
                         <SelectPlace data={selectLocalizationPack} />
                     )}
-
-                    <CloudIcon size="176px" left1="-5%" top="16%" right2="84%"/>
-                    <CloudIcon size="215px" left1="-4%" top="45%" right2="80%"/>
-                    <CloudIcon size="176px" left1="25%" top="32%" left2="80%"/>
-                    <CloudIcon size="127px" left1="27%" top="62%" left2="84%"/>
+                    {/* prettier-ignore */}
+                    <CloudIcon size='176px' left1='-5%' top='16%' right2='79%' />
+                    {/* prettier-ignore */}
+                    <CloudIcon size='215px' left1='-4%' top='45%' right2='74%' />
+                    <CloudIcon size='176px' left1='25%' top='32%' left2='80%' />
+                    <CloudIcon size='127px' left1='27%' top='62%' left2='84%' />
 
                     <FlexRowCenter mb='52px' width='366px'>
                         <SearchGreyButton
@@ -183,7 +186,6 @@ class App extends React.Component {
                             onClick={this.currentLocationQueryProcedure}
                         />
                     </FlexRowCenter>
-
                     <TodayWeather
                         data={this.state.apiWeatherData}
                         convertTemperature={this.convertTemperature}

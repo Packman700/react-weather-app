@@ -1,4 +1,6 @@
 import React from 'react'
+import sleep from 'helpers/sleep'
+
 import SearchBlueButton from 'styled-components/buttons/SearchBlueButton'
 import FormatInputText from 'styled-components/input/InputText'
 import FlexRowCenter from 'styled-components/position/FlexRowCenter'
@@ -33,21 +35,26 @@ class SelectPlace extends React.Component {
         apiCitiesData = apiCitiesData.slice(0, this.state.numberCitiesToShow)
 
         // On click event
-        const selectCityAction = event => {
-            getDataFromApi(weatherQuery, event)
-            this.setState({ startSearch: false })
+        const selectCityAction = async event => {
+            event.target.className += ' slide-to-right'
+            await sleep(1200) // Await to animation end
 
+            await getDataFromApi(weatherQuery, event)
+            this.setState({ startSearch: false })
             // Modify event.target to hide SelectPlace after chose city
             event.target = { name: 'isSelectPlaceActive', value: false }
-            handleChange(event)
+            console.log(1)
+            await handleChange(event)
+            console.log(2)
         }
 
         // List of item to return
-        return apiCitiesData.map(city => (
+        return apiCitiesData.map((city, index) => (
             <CityListItem
                 key={city.woeid}
                 data-key={city.woeid}
                 onClick={event => selectCityAction(event)}
+                index={index}
             >
                 {city.title}
             </CityListItem>
@@ -97,7 +104,6 @@ class SelectPlace extends React.Component {
 
                     {/* SEARCH ENGINE */}
                     <FlexRowCenter mb='25px'>
-                        {/* todo add validation (look input isn't empty) before send */}
                         <FormatInputText searchIcon>
                             <input
                                 type='text'
@@ -106,7 +112,10 @@ class SelectPlace extends React.Component {
                                 autoComplete='off'
                                 value={inputValue}
                                 onChange={handleChange}
-                                onKeyUp={(event => {event.keyCode === 13 && searchButtonAction(event)})}
+                                onKeyUp={event => {
+                                    event.keyCode === 13 &&
+                                        searchButtonAction(event)
+                                }}
                             />
                         </FormatInputText>
                         <SearchBlueButton
@@ -120,15 +129,24 @@ class SelectPlace extends React.Component {
                     <Ul>{!isRunningApiCitiesRequest && citesListElements}</Ul>
 
                     {/* Reaction to all possible data state */}
-                    {isRunningApiCitiesRequest ? (
-                        <Small mb='2px'>Loading data</Small>
+                    {isRunningApiCitiesRequest && this.state.startSearch ? (
+                        <>
+                            <Small mb='2px' fade>
+                                Loading data
+                            </Small>
+                            <Small aria-hidden='true' hide>
+                                This text is just to rerender
+                            </Small>
+                        </>
                     ) : notShownCitiesElements > 0 ? (
-                        <Small mb='12px'>
+                        <Small mb='12px' fade>
                             We hide {notShownCitiesElements} cities
                         </Small>
                     ) : citesListElements.length === 0 &&
                       this.state.startSearch ? (
-                        <Small mb='2px'> Nothing found </Small>
+                        <Small mb='2px' fastFade>
+                            Nothing found
+                        </Small>
                     ) : (
                         <FreeSpace mb='12px' />
                     )}

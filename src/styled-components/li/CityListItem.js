@@ -1,9 +1,25 @@
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
+
+const slideInFromLeft = keyframes`
+        0% {
+                color: #ac98be;
+                transform: translateX(calc(-50vw));
+                opacity: 0.4;
+        }
+        100% {
+                transform: translateX(0);
+                opacity: 1;
+        }
+`
 
 const CityListItem = styled.li`
+    position: relative;
+    transform: translateX(calc(-47vw));
+    animation: ${slideInFromLeft} 1200ms ease-out
+        ${({ index }) => index * 130}ms forwards;
+
     display: flex;
     align-items: center;
-    position: relative;
 
     width: 100%;
     height: 64px;
@@ -17,7 +33,6 @@ const CityListItem = styled.li`
     :hover {
         border: 1px solid ${({ theme }) => theme.colors.grayDark};
         padding-left: 11px;
-
         ::after {
             position: absolute;
             font-family: 'Material Icons', 'Raleway', sans-serif;

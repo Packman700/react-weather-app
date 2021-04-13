@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledSelectPlace = styled(FlexColumnCenter)`
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     min-height: 100vh;
     background: ${({ theme }) => theme.colors.primaryLight};

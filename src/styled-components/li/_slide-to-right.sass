@@ -1,0 +1,17 @@
+// Add this animation using styled components is to hard to code
+
+@keyframes slide-to-right-animation
+  from
+    transform: translateX(0)
+    opacity: 1
+  to
+    transform: translateX(100vw)
+    opacity: 0.4
+    color: #640f92
+
+
+.slide-to-right
+  &:not(:focus)
+    animation: slide-to-right-animation 1500ms ease-in 0ms infinite
+
+
