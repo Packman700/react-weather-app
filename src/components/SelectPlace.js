@@ -69,6 +69,7 @@ class SelectPlace extends React.Component {
             cityNameQuery,
             isRunningApiCitiesRequest,
             apiCitiesData,
+            isSelectPlaceActive,
         } = this.props.data
 
         const weatherRequestSent = this.state.startSearch === true
@@ -87,7 +88,7 @@ class SelectPlace extends React.Component {
         }
 
         return (
-            <StyledSelectPlace>
+            <StyledSelectPlace hide={isSelectPlaceActive}>
                 <FlexColumnCenter width='366px'>
                     {/* CLOSE BUTTON */}
                     <FlexRowCenter

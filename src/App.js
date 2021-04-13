@@ -151,6 +151,7 @@ class App extends React.Component {
             inputValue: this.state.searchCity,
             apiCitiesData: this.state.apiCitiesData,
             isRunningApiCitiesRequest: this.state.isRunningApiCitiesRequest,
+            isSelectPlaceActive: this.state.isSelectPlaceActive,
             handleChange: this.handleChange,
             getDataFromApi: this.getDataFromApi,
             cityNameQuery: this.cityNameQuery,
@@ -164,9 +165,8 @@ class App extends React.Component {
                 )}
 
                 <StyledAside as='aside'>
-                    {this.state.isSelectPlaceActive && (
-                        <SelectPlace data={selectLocalizationPack} />
-                    )}
+                    <SelectPlace data={selectLocalizationPack} />
+
                     {/* prettier-ignore */}
                     <CloudIcon size='176px' left1='-5%' top='16%' right2='79%' />
                     {/* prettier-ignore */}
