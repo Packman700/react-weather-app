@@ -24,11 +24,15 @@ function TodayHighlights(props) {
         visibility,
     } = props.data.consolidated_weather[0]
 
+    const MILE_TO_KILOMETER = 1.609344
+
     compassRotate = Math.round(compassRotate)
-    windSpeed = Math.round(windSpeed)
+    windSpeed = Math.round(windSpeed * MILE_TO_KILOMETER)
     airPressure = Math.round(airPressure)
     humidity = Math.round(humidity)
-    visibility = (Math.round(visibility * 10) / 10).toString().replace('.', ',')
+    visibility = (Math.round(visibility * MILE_TO_KILOMETER * 10) / 10)
+        .toString()
+        .replace('.', ',')
 
     return (
         <FlexColumnCenter mt='20px' as='section' width='100%'>
@@ -37,7 +41,7 @@ function TodayHighlights(props) {
                 <StyledHighlightCard key={1} as='article' index='0'>
                     <HighlightHeader>Wind status</HighlightHeader>
                     <BigBold WordSpacing='-0.8rem'>
-                        {windSpeed} <HighlightSub> mph </HighlightSub>
+                        {windSpeed} <HighlightSub> kph </HighlightSub>
                     </BigBold>
                     <FlexRowCenter width='80px' justifyContent='space-around'>
                         <WindDirectionIcon rotateDeg={compassRotate} />
@@ -70,14 +74,15 @@ function TodayHighlights(props) {
                 <StyledHighlightCard key={3} as='article' index='2' small>
                     <HighlightHeader>Visibility</HighlightHeader>
                     <BigBold>
-                        {visibility} <HighlightSub>miles</HighlightSub>
+                        {visibility}
+                        <HighlightSub>km</HighlightSub>
                     </BigBold>
                 </StyledHighlightCard>
 
                 <StyledHighlightCard key={4} as='article' index='3' small>
                     <HighlightHeader>Air Pressure</HighlightHeader>
                     <BigBold>
-                        {airPressure} <HighlightSub>mb</HighlightSub>
+                        {airPressure} <HighlightSub>hpa</HighlightSub>
                     </BigBold>
                 </StyledHighlightCard>
             </HighlightsGrid>
