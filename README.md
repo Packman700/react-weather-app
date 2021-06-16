@@ -3,9 +3,11 @@ This project is simple weather app where user can select city and get informatio
 
 ![image](https://user-images.githubusercontent.com/53169727/114830556-9b572180-9dcc-11eb-9a02-d3708049a9a8.png)
 
-
 Hosted website: https://packman700.github.io/react-weather-app/
 
+**!!!WARNING!!!**
+Website API use CORS and to use this app is necessary get temporary access to heroku cors server by got to [this websie](https://cors-anywhere.herokuapp.com/corsdemo) and click
+```Request temporary access to the demo server``` button
 
 ## Layout & Idea
 This project is build on react and is based on layout form [devchallenges.io](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv)
